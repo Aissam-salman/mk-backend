@@ -22,7 +22,7 @@ public class AuthService {
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
 
-    public AuthentificationResponse register(RegisterRequest request) throws Exception {
+    public AuthentificationResponse register(RegisterRequest request) {
         var user = User.builder()
                 .firstname(request.getFirstname())
                 .lastname(request.getLastname())
@@ -31,13 +31,13 @@ public class AuthService {
                 .role(Role.USER)
                 .build();
         userRepository.save(user);
-        var jwtToken = jwtService.generateToken(new HashMap<>(),user);
+        var jwtToken = jwtService.generateToken(new HashMap<>(), user);
         return AuthentificationResponse.builder()
                 .token(jwtToken)
                 .build();
     }
 
-    public AuthentificationResponse authenticate(AuthenticationRequest request) throws Exception {
+    public AuthentificationResponse authenticate(AuthenticationRequest request){
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
         );
