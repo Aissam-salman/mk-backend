@@ -2,7 +2,7 @@ package app.minkey.fr.minkeybackend.auth;
 
 
 import app.minkey.fr.minkeybackend.config.JwtService;
-import app.minkey.fr.minkeybackend.user.model.Role;
+import app.minkey.fr.minkeybackend.user.model.Plan;
 import app.minkey.fr.minkeybackend.user.model.User;
 import app.minkey.fr.minkeybackend.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -28,7 +28,8 @@ public class AuthService {
                 .lastname(request.getLastname())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
-                .role(Role.USER)
+                .plan(Plan.USER)
+                .stripeCustId(request.getStripeCustomerId())
                 .build();
         userRepository.save(user);
         var jwtToken = jwtService.generateToken(new HashMap<>(), user);

@@ -33,9 +33,11 @@ public class User implements UserDetails {
 
     private String password;
 
+    private String stripeCustId;
 
     @Enumerated(EnumType.STRING)
-    private Role role;
+    private Plan plan;
+
     @CreationTimestamp
     @Column(updatable = false, name = "created_at")
     private Date createdAt;
@@ -49,7 +51,7 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role.name()));
+        return List.of(new SimpleGrantedAuthority(plan.name()));
     }
 
     @Override
