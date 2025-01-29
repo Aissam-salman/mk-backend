@@ -48,6 +48,8 @@ public class User implements UserDetails {
 
     private Timestamp subscribeAt;
 
+    private String photoUrl;
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

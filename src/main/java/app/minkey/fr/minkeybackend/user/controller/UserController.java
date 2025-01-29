@@ -30,6 +30,8 @@ public class UserController {
                 .email(user.getEmail())
                 .username(user.getUsername())
                 .stripeCustId(user.getStripeCustId())
+                .photoUrl(user.getPhotoUrl())
+                .plan(user.getPlan())
                 .build();
         return ResponseEntity.ok(userResponse);
     }
