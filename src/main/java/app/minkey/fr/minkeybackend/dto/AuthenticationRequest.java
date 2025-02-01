@@ -1,4 +1,4 @@
-package app.minkey.fr.minkeybackend.auth;
+package app.minkey.fr.minkeybackend.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,8 +7,9 @@ import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
-@Builder
 @NoArgsConstructor
-public class AuthentificationResponse {
-    private String token;
+@Builder
+public class AuthenticationRequest {
+    private String email;
+    private String password;
 }

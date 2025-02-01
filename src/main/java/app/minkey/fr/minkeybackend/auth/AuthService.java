@@ -1,7 +1,9 @@
 package app.minkey.fr.minkeybackend.auth;
 
 
-import app.minkey.fr.minkeybackend.config.JwtService;
+import app.minkey.fr.minkeybackend.dto.AuthenticationRequest;
+import app.minkey.fr.minkeybackend.dto.AuthentificationResponse;
+import app.minkey.fr.minkeybackend.dto.RegisterRequest;
 import app.minkey.fr.minkeybackend.user.model.Plan;
 import app.minkey.fr.minkeybackend.user.model.User;
 import app.minkey.fr.minkeybackend.user.repository.UserRepository;

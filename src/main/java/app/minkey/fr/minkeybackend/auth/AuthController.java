@@ -1,14 +1,21 @@
 package app.minkey.fr.minkeybackend.auth;
 
-import app.minkey.fr.minkeybackend.config.JwtService;
+import app.minkey.fr.minkeybackend.dto.AuthenticationRequest;
+import app.minkey.fr.minkeybackend.dto.AuthentificationResponse;
+import app.minkey.fr.minkeybackend.dto.ForgotReq;
+import app.minkey.fr.minkeybackend.dto.RegisterRequest;
 import app.minkey.fr.minkeybackend.mail.BrevoService;
 import app.minkey.fr.minkeybackend.mail.BrevoTemplate;
 import app.minkey.fr.minkeybackend.user.model.User;
 import app.minkey.fr.minkeybackend.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
 
@@ -50,6 +57,22 @@ public class AuthController {
 
         brevoService.sendBrevoMail(brevoTemplate, user.getEmail());
         return ResponseEntity.ok("email send");
+    }
+
+    @PostMapping("/refresh")
+    public ResponseEntity<?> refreshToken(@RequestBody Map<String, String> request) {
+        String refreshToken = request.get("refreshToken");
+
+        if (refreshToken == null || refreshToken.isEmpty()) {
+            return ResponseEntity.badRequest().body("Refresh token is required");
+        }
+
+        try {
+            String newAccessToken = jwtService.refreshAccessToken(refreshToken);
+            return ResponseEntity.ok(Map.of("accessToken", newAccessToken));
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
+        }
     }
 
 }

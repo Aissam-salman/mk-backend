@@ -1,5 +1,6 @@
 package app.minkey.fr.minkeybackend.config;
 
+import app.minkey.fr.minkeybackend.auth.JwtAuthFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

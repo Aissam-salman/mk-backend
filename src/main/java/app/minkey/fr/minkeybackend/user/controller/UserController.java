@@ -28,7 +28,7 @@ public class UserController {
         UserResponse userResponse = UserResponse.builder()
                 .id(user.getId())
                 .email(user.getEmail())
-                .username(user.getUsername())
+                .username(user.getFirstname() + " " + user.getLastname())
                 .stripeCustId(user.getStripeCustId())
                 .photoUrl(user.getPhotoUrl())
                 .plan(user.getPlan())

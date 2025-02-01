@@ -1,4 +1,4 @@
-package app.minkey.fr.minkeybackend.auth;
+package app.minkey.fr.minkeybackend.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class AuthenticationRequest {
+public class RegisterRequest {
+    private String firstname;
+    private String lastname;
     private String email;
     private String password;
+    private String stripeCustomerId;
 }
