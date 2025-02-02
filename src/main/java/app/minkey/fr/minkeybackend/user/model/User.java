@@ -50,6 +50,8 @@ public class User implements UserDetails {
 
     private String photoUrl;
 
+    private String bio;
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

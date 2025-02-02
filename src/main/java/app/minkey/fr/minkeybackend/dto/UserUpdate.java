@@ -1,18 +1,16 @@
 package app.minkey.fr.minkeybackend.dto;
 
 import app.minkey.fr.minkeybackend.user.model.Plan;
+import jakarta.validation.constraints.Email;
 import lombok.Builder;
 
 
 @Builder
-public record UserResponse(
-        Long id,
+public record UserUpdate(
         String firstname,
         String lastname,
-        String email,
+        @Email String email,
         String bio,
-        String stripeCustId,
-        String photoUrl,
-        Plan plan
+        String photoUrl
 ) {
 }
